@@ -42,7 +42,7 @@ body {
 
 #image-container{
 display:none;
-border: 2px solid brown;
+/* border: 2px solid brown; */
 
  /* height:300px; */
 /* width: 300px; */
@@ -57,7 +57,7 @@ width:1000px;
 }
 
 .card-images {
-  border: 2px solid brown;
+  /* border: 2px solid brown; */
   height: 300px;
   width: 200px;
   margin:4px 6px 12px ;

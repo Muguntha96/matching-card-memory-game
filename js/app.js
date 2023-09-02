@@ -6,10 +6,11 @@ const difficultylevel = {
 
 }
 console.log(difficultylevel)
+const imageNames = ['image01', 'image02', 'image03', 'image04', 'image05', 'image06', 'image07', 'image08']
 
 /*-------------------------------- Variables --------------------------------*/
 
-let firstIndex, card, count, level
+let firstIndex, cards, count, level
 
 
 
@@ -19,7 +20,8 @@ const easyBtn = document.querySelector("#easy")
 const mediumBtn = document.querySelector("#medium")
 const hardBtn = document.querySelector("#hard")
 const imageContainer = document.querySelector("#image-container")
-const resetBtn=document.querySelector("#reset")
+const resetBtn = document.querySelector("#reset")
+
 
 //console.log(easyBtn)
 
@@ -28,40 +30,71 @@ const resetBtn=document.querySelector("#reset")
 easyBtn.addEventListener('click', difficultyLevelButtonClick)
 mediumBtn.addEventListener('click', difficultyLevelButtonClick)
 hardBtn.addEventListener('click', difficultyLevelButtonClick)
-resetBtn.addEventListener('click',init)
 
+
+//resetBtn.addEventListener('click', init)
+// cardImages.addEventListener('click',console.log("image is clicked"))
 
 /*-------------------------------- Functions --------------------------------*/
 init()
 function init() {
   firstIndex = 0
-  images = []
+  cards = []
   count = 0
   level = ''
-  
-
 }
 
 function difficultyLevelButtonClick(evt) {
   buttons.style.display = 'none'
-  resetBtn.style.display='flex'
+  resetBtn.style.display = 'flex'
   level = evt.target.id
-  console.log(difficultylevel[level])
-  imageContainer.style.display='flex'
+  imageContainer.style.display = 'flex'
+  for (let i = 0; i < difficultylevel[level]; i++) {
+    const divImage = document.createElement('div')
+    divImage.className = 'card-images'
+    divImage.id = `card${i}`
+    imageContainer.appendChild(divImage)
+    divImage.style.backgroundImage = "url('../images/backgroundimage.png')"
+    cards.push(null)
+  }
+  document.querySelectorAll(".card-images").forEach((card) => card.addEventListener('click', cardclick))
+  applyImagestocard(difficultylevel[level])
+   console.log(cards)
 
-          for(let i=0;i<difficultylevel[level];i++){
-            const divImage=document.createElement('div')
-            divImage.className='card-images'     
-            divImage.id = `card${i}`
-           imageContainer.appendChild(divImage)
-           console.log(divImage)  
-           
-          }
-
-
-     
-      console.log(imageContainer)
-
-  
 }
 
+
+function cardclick(evt) {
+  console.log(evt.target.id + 'clicked')
+}
+
+function applyImagestocard(levelValue) {
+for(let i=0;i<levelValue/2;i++)
+{
+  let imageName = imageNames[i]
+  let cardIndex = generateRandomNumber();
+  cards[cardIndex] = {
+    nameOfImage:imageName,
+    
+  }
+    cardIndex = generateRandomNumber();
+  cards[cardIndex] = {
+    nameOfImage:imageName
+  }
+}
+
+}
+
+function generateRandomNumber() {
+  let randomNumber = Math.floor(Math.random() * difficultylevel[level])
+  while(true)
+  {
+    if(cards[randomNumber] != null)
+    {
+      randomNumber = generateRandomNumber()
+    }
+    break
+  }
+  return randomNumber
+
+}

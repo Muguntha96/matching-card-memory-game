@@ -19,6 +19,7 @@ const easyBtn = document.querySelector("#easy")
 const mediumBtn = document.querySelector("#medium")
 const hardBtn = document.querySelector("#hard")
 const imageContainer = document.querySelector("#image-container")
+const resetBtn=document.querySelector("#reset")
 
 //console.log(easyBtn)
 
@@ -27,6 +28,8 @@ const imageContainer = document.querySelector("#image-container")
 easyBtn.addEventListener('click', difficultyLevelButtonClick)
 mediumBtn.addEventListener('click', difficultyLevelButtonClick)
 hardBtn.addEventListener('click', difficultyLevelButtonClick)
+resetBtn.addEventListener('click',init)
+
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -35,32 +38,27 @@ function init() {
   images = []
   count = 0
   level = ''
+  
 
 }
 
 function difficultyLevelButtonClick(evt) {
   buttons.style.display = 'none'
+  resetBtn.style.display='flex'
   level = evt.target.id
   console.log(difficultylevel[level])
   imageContainer.style.display='flex'
-  for (let i = 0; i < difficultylevel[level]/4; i++) {
-        const divSet = document.createElement('div')
-        divSet.className =`set${i}`
-          imageContainer.appendChild(divSet)
-          for(let i=0;i<4;i++){
+
+          for(let i=0;i<difficultylevel[level];i++){
             const divImage=document.createElement('div')
-            divImage.className='card-images'
-           // divImage.id=`${i}`
-            
-           
-            
-            divSet.appendChild(divImage)
-            
+            divImage.className='card-images'     
+            divImage.id = `card${i}`
+           imageContainer.appendChild(divImage)
+           console.log(divImage)  
            
           }
-     
-          
-      }
+
+
      
       console.log(imageContainer)
 

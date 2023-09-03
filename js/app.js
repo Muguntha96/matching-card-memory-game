@@ -38,7 +38,7 @@ hardBtn.addEventListener('click', difficultyLevelButtonClick)
 /*-------------------------------- Functions --------------------------------*/
 init()
 function init() {
-  firstIndex = 0
+  firstIndex = null
   cards = []
   count = 0
   level = ''
@@ -54,47 +54,63 @@ function difficultyLevelButtonClick(evt) {
     divImage.className = 'card-images'
     divImage.id = `card${i}`
     imageContainer.appendChild(divImage)
-    divImage.style.backgroundImage = "url('../images/backgroundimage.png')"
+    divImage.style.backgroundImage = "url(images/backgroundimage.png)"
     cards.push(null)
   }
-  document.querySelectorAll(".card-images").forEach((card) => card.addEventListener('click', cardclick))
+  document.querySelectorAll(".card-images").forEach((card) => card.addEventListener('click', cardClick))
   applyImagestocard(difficultylevel[level])
-   console.log(cards)
+  console.log(cards)
 
 }
 
 
-function cardclick(evt) {
-  console.log(evt.target.id + 'clicked')
+function cardClick(evt) {
+  let idx = parseInt(evt.target.id.replace('card', ''))
+  evt.target.style.backgroundImage = `url(images/${cards[idx].nameOfImage}.png)`
+  if (firstIndex === null) {
+    firstIndex = idx
+
+
+  } else if (cards[firstIndex].nameOfImage === cards[idx].nameOfImage) {
+
+    firstIndex = null
+    console.log("clicked")
+
+
+
+  }
+
 }
+
 
 function applyImagestocard(levelValue) {
-for(let i=0;i<levelValue/2;i++)
-{
-  let imageName = imageNames[i]
-  let cardIndex = generateRandomNumber();
-  cards[cardIndex] = {
-    nameOfImage:imageName,
-    
-  }
+  for (let i = 0; i < levelValue / 2; i++) {
+    let imageName = imageNames[i]
+    let cardIndex = generateRandomNumber();
+    cards[cardIndex] = {
+      nameOfImage: imageName,
+
+    }
     cardIndex = generateRandomNumber();
-  cards[cardIndex] = {
-    nameOfImage:imageName
+    cards[cardIndex] = {
+      nameOfImage: imageName
+    }
   }
-}
 
 }
 
 function generateRandomNumber() {
   let randomNumber = Math.floor(Math.random() * difficultylevel[level])
-  while(true)
-  {
-    if(cards[randomNumber] != null)
-    {
+  while (true) {
+    if (cards[randomNumber] != null) {
       randomNumber = generateRandomNumber()
     }
     break
   }
   return randomNumber
+
+}
+
+function checkForWinner() {
 
 }

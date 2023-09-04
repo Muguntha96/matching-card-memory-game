@@ -11,25 +11,23 @@ const imageNames = ['image01', 'image02', 'image03', 'image04', 'image05', 'imag
 /*-------------------------------- Variables --------------------------------*/
 
 let firstIndex, cards, count, level
-
+let startTime, currentTime, difference, totalSeconds, totalMinutes, seconds,intervalId
 
 
 /*------------------------ Cached Element References ------------------------*/
 const buttons = document.querySelector("#buttons")
-const easyBtn = document.querySelector("#easy")
-const mediumBtn = document.querySelector("#medium")
-const hardBtn = document.querySelector("#hard")
 const imageContainer = document.querySelector("#image-container")
 const resetBtn = document.querySelector("#reset")
+const showTimer=document.querySelector("#timer")
+const startGame=document.querySelector("#game-start")
 
 
 //console.log(easyBtn)
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-easyBtn.addEventListener('click', difficultyLevelButtonClick)
-mediumBtn.addEventListener('click', difficultyLevelButtonClick)
-hardBtn.addEventListener('click', difficultyLevelButtonClick)
+document.querySelectorAll('.levelbuttons').forEach((element) => element.addEventListener('click', difficultyLevelButtonClick))
+resetBtn.addEventListener('click', resetButton)
 
 
 //resetBtn.addEventListener('click', init)
@@ -40,13 +38,14 @@ init()
 function init() {
   firstIndex = null
   cards = []
-  count = 0
   level = ''
 }
 
 function difficultyLevelButtonClick(evt) {
+
   buttons.style.display = 'none'
   resetBtn.style.display = 'flex'
+  intervalId=setInterval(timer,1000)
   level = evt.target.id
   imageContainer.style.display = 'flex'
   for (let i = 0; i < difficultylevel[level]; i++) {
@@ -97,9 +96,6 @@ function cardClick(evt) {
     }, 1000);
 
   }
-
-
-
 }
 
 
@@ -137,8 +133,33 @@ function generateRandomNumber() {
 function checkForWinner() {
   const checkWinner = cards.every(element => element.found === 1)
   if (checkWinner === true) {
-    console.log("Winner")
-  } else {
-    console.log("lost")
+    const showMessage = document.getElementById("result-message")
+    showMessage.textContent = "You Win the game"
   }
 }
+function resetButton() {
+
+  buttons.style.display = 'flex'
+  imageContainer.style.display = 'none'
+  resetBtn.style.display = 'none'
+  document.querySelectorAll('.card-images').forEach((element) => imageContainer.removeChild(element))
+  cards = []
+  firstIndex = null
+  level = ''
+}
+
+function timer() {
+  startTime = new Date()
+  if (difficultylevel[level] === 'easy') {
+    startTime.setMinutes(startTime.getMinutes() + 2)
+    currentTime = new Date()
+    difference = Math.abs(startTime - currentTime)
+    totalSeconds = Math.floor(difference / 1000)
+    totalMinutes = Math.floor(totalSeconds / 60)
+    seconds=totalSeconds%60
+    updateTimer()
+
+  }
+}
+
+ 

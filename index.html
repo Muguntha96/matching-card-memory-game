@@ -11,15 +11,20 @@
 </head>
 
 <body>
+<div class="game-header">
   <h1>Matching card memory game</h1>
+  <h2 id="timer">Time Left</h2>
+</div>
+
   <div class="buttons" id="buttons">
-    <button id="easy">Easy</button>
-    <button id="medium">Medium</button>
-    <button id="hard">Hard</button>
+    <button class="levelbuttons" id="easy">Easy</button>
+    <button class="levelbuttons" id="medium">Medium</button>
+    <button class="levelbuttons" id="hard">Hard</button>
   </div>
+  <div id="result-message"></div>
   <div id="image-container"></div>
-  <div class=""resetbutton" id="resetbutton">
-    <button id="reset">Reset</button>  
+  <div class="resetbutton" id="resetbutton">
+    <button id="reset">Reset</button>
   </div>
 </body>
 

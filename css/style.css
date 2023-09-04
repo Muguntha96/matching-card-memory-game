@@ -4,24 +4,16 @@ body {
   align-items: center;
   margin: 3px;
 }
-.game-header{
-  display:flex;
-  flex-direction: row;
-
-}
 #timer{
-display:flex;
-flex-direction:row;
-align-items: end;
-justify-content: ;
+  display:none;
 
+ 
 }
 .buttons{
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  height:60px;
+    height:60px;
   width: 300px;
 }
 

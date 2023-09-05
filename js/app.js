@@ -18,7 +18,7 @@ const difficultylevel = {
 }
 
 //console.log(difficultylevel)
-const imageNames = ['image01', 'image02', 'image03', 'image04', 'image05', 'image06', 'image07', 'image08']
+const imageNames = ['image01', 'image02', 'image03', 'image04', 'image05', 'image06', 'image07', 'image08']`
 
 /*-------------------------------- Variables --------------------------------*/
 

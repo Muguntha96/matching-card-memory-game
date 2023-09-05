@@ -1,16 +1,18 @@
+import * as memoryGameAudio from './audio.js'
 /*-------------------------------- Constants --------------------------------*/
+
 const difficultylevel = {
-  easy :{
-    numberOfCards :8,
-    gameTime:1
+  easy: {
+    numberOfCards: 8,
+    gameTime: 1
   },
-  medium :{
-    numberOfCards:12,
-    gameTime:2
+  medium: {
+    numberOfCards: 12,
+    gameTime: 2
   },
-  hard:{
-    numberOfCards:16,
-    gameTime:3
+  hard: {
+    numberOfCards: 16,
+    gameTime: 3
   }
 
 }
@@ -20,8 +22,8 @@ const imageNames = ['image01', 'image02', 'image03', 'image04', 'image05', 'imag
 
 /*-------------------------------- Variables --------------------------------*/
 
-let firstIndex, cards, level,interval
-let difference,totalMinutes,totalSeconds,startTime,currentTime,seconds
+let firstIndex, cards, level, interval
+let difference, totalMinutes, totalSeconds, startTime, currentTime, seconds
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -36,7 +38,8 @@ const startGame = document.querySelector("#game-start")
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-document.querySelectorAll('.levelbuttons').forEach((element) => element.addEventListener('click', difficultyLevelButtonClick))resetBtn.addEventListener('click', resetButton)
+document.querySelectorAll('.levelbuttons').forEach((element) => element.addEventListener('click', difficultyLevelButtonClick))
+resetBtn.addEventListener('click', resetButton)
 
 
 //resetBtn.addEventListener('click', init)
@@ -52,26 +55,26 @@ function init() {
 
 function difficultyLevelButtonClick(evt) {
   level = evt.target.id
-  startTime=new Date()
-  startTime.setMinutes(startTime.getMinutes()+difficultylevel[level].gameTime)
+  startTime = new Date()
+  startTime.setMinutes(startTime.getMinutes() + difficultylevel[level].gameTime)
   buttons.style.display = 'none'
-  document.getElementById("timer").style.display="flex"
-  
+  document.getElementById("timer").style.display = "flex"
+
   resetBtn.style.display = 'flex'
- 
-    
-    console.log(level)
-  
+
+
+  console.log(level)
+
   timer()
-  interval=setInterval(timer,1000)
-    
+  interval = setInterval(timer, 1000)
+
   imageContainer.style.display = 'flex'
   for (let i = 0; i < difficultylevel[level].numberOfCards; i++) {
     const divImage = document.createElement('div')
     divImage.className = 'card-images'
     divImage.id = `card${i}`
     imageContainer.appendChild(divImage)
-    divImage.style.backgroundImage = "url(images/backgroundimage.png)"
+    divImage.style.backgroundImage = "url(assets/images/backgroundimage.png)"
     cards.push(null)
   }
   document.querySelectorAll(".card-images").forEach((card) => card.addEventListener('click', cardClick))
@@ -85,7 +88,7 @@ function difficultyLevelButtonClick(evt) {
 
 function cardClick(evt) {
   let idx = parseInt(evt.target.id.replace('card', ''))
-  evt.target.style.backgroundImage = `url(images/${cards[idx].nameOfImage}.png)`
+  evt.target.style.backgroundImage = `url(assets/images/${cards[idx].nameOfImage}.png)`
   if (firstIndex === idx) {
     return
   }
@@ -99,20 +102,22 @@ function cardClick(evt) {
     document.getElementById(`card${firstIndex}`).removeEventListener('click', cardClick)
     document.getElementById(`card${idx}`).removeEventListener('click', cardClick)
     firstIndex = null
-    console.log("clicked")
 
+    memoryGameAudio.validSelect()
     checkForWinner()
 
   }
   else {
+    memoryGameAudio.invalidSelect()
     setTimeout(() => {
-      evt.target.style.backgroundImage = "url(images/backgroundimage.png)"
-      document.getElementById(`card${firstIndex}`).style.backgroundImage = "url(images/backgroundimage.png)"
+      evt.target.style.backgroundImage = "url(assets/images/backgroundimage.png)"
+      document.getElementById(`card${firstIndex}`).style.backgroundImage = "url(assets/images/backgroundimage.png)"
 
       firstIndex = null
     }, 1000);
 
   }
+
 }
 
 
@@ -152,6 +157,14 @@ function checkForWinner() {
   if (checkWinner === true) {
     const showMessage = document.getElementById("result-message")
     showMessage.textContent = "You Win the game"
+
+    memoryGameAudio.winnerMusic()
+    confetti.start()
+    setTimeout(() => {
+      confetti.remove()
+    }, 3000);
+
+
     //
     clearInterval(interval)
   }
@@ -161,8 +174,8 @@ function resetButton() {
   buttons.style.display = 'flex'
   imageContainer.style.display = 'none'
   resetBtn.style.display = 'none'
-  document.getElementById("timer").style.display="none"
-  document.getElementById("result-message").style.display="none"
+  document.getElementById("timer").style.display = "none"
+  document.getElementById("result-message").style.display = "none"
   clearInterval(interval)
   document.querySelectorAll('.card-images').forEach((element) => imageContainer.removeChild(element))
   cards = []
@@ -170,18 +183,18 @@ function resetButton() {
   level = ''
 }
 
-function timer(){
-   currentTime=new Date()
-   difference=Math.abs(startTime-currentTime)
-   totalSeconds=Math.floor(difference/1000)
-   totalMinutes=Math.floor(totalSeconds/60)
-   seconds=totalSeconds%60
-   if(totalSeconds ===0){
+function timer() {
+  currentTime = new Date()
+  difference = Math.abs(startTime - currentTime)
+  totalSeconds = Math.floor(difference / 1000)
+  totalMinutes = Math.floor(totalSeconds / 60)
+  seconds = totalSeconds % 60
+  if (totalSeconds === 0) {
     clearInterval(interval)
-    document.getElementById("timer").textContent="TimeOut"
+    document.getElementById("timer").textContent = "TimeOut"
     document.querySelectorAll(".card-images").forEach((card) => card.removeEventListener('click', cardClick))
-     }else{
-    document.getElementById("timer").textContent=`Time left:${totalMinutes}:${seconds}`
-   }
+  } else {
+    document.getElementById("timer").textContent = `Time left:${totalMinutes}:${seconds}`
+  }
 }
 

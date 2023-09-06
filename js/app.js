@@ -3,15 +3,15 @@ import * as memoryGameAudio from './audio.js'
 
 const difficultylevel = {
   easy: {
-    numberOfCards: 8,
+    numberOfCards: 12,
     gameTime: 1
   },
   medium: {
-    numberOfCards: 12,
+    numberOfCards: 20,
     gameTime: 2
   },
   hard: {
-    numberOfCards: 16,
+    numberOfCards: 24,
     gameTime: 3
   }
 
@@ -39,7 +39,7 @@ const showTimer = document.querySelector("#timer")
 const startGame = document.querySelector("#game-start")
 
 
-//console.log(easyBtn)
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -64,22 +64,16 @@ function difficultyLevelButtonClick(evt) {
   startTime.setMinutes(startTime.getMinutes() + difficultylevel[level].gameTime)
   buttons.style.display = 'none'
   document.getElementById("timer").style.display = "flex"
-
   resetBtn.style.display = 'flex'
-
-
-  // console.log(level)
-
   timer()
   interval = setInterval(timer, 1000)
-
   imageContainer.style.display = 'flex'
   for (let i = 0; i < difficultylevel[level].numberOfCards; i++) {
     const divImage = document.createElement('div')
     divImage.className = 'card-images'
     divImage.id = `card${i}`
     imageContainer.appendChild(divImage)
-    divImage.style.backgroundImage = "url(assets/cardsDeck/default-image.png)"
+    divImage.style.backgroundImage = `url(assets/cardsDeck/red_joker - instasize.png)`
     cards.push(null)
   }
   document.querySelectorAll(".card-images").forEach((card) => card.addEventListener('click', cardClick))
@@ -93,11 +87,10 @@ function difficultyLevelButtonClick(evt) {
 
 function cardClick(evt) {
   let idx = parseInt(evt.target.id.replace('card', ''))
-  evt.target.style.backgroundImage = `url(assets/images/${cards[idx].nameOfImage}.png)`
+  evt.target.style.backgroundImage = `url(assets/cardsDeck/${cards[idx].nameOfImage}.png)`
   if (firstIndex === idx) {
     return
   }
-
   if (firstIndex === null) {
     firstIndex = idx
 
@@ -120,104 +113,89 @@ function cardClick(evt) {
 
       firstIndex = null
     }, 1000);
-
   }
-
 }
-
-
-
 function applyImagestocard(levelValue) {
   for (let i = 0; i < levelValue / 2; i++) {
     let imageRandom = generateImageRandomNumber()
-
+    console.log(imageRandom)
     let image = imagesArray[imageRandom]
-    // console.log(image)
     let index = generateRandomNumberCards()
-    // console.log(index)
-
-    cards[index] ={
-      nameOfImage:image,
-      found:0
+    cards[index] = {
+      nameOfImage: image,
+      found: 0
     }
-    // console.log(cards[index])
     index = generateRandomNumberCards()
-    cards[index] ={
-      nameOfImage:image,
-      found:0
+    cards[index] = {
+      nameOfImage: image,
+      found: 0
     }
   }
-  // console.log(cards)
+}
 
-  }
-
-  function generateRandomNumberCards() {
-    let cardsRandomNumber = Math.floor(Math.random() *difficultylevel[level].numberOfCards)
-    while (true) {
-      if (cards[cardsRandomNumber] != null) {
-        cardsRandomNumber = generateRandomNumberCards()
-        // console.log(cardsRandomNumber)
-      }
-      break
+function generateRandomNumberCards() {
+  let cardsRandomNumber = Math.floor(Math.random() * difficultylevel[level].numberOfCards)
+  while (true) {
+    if (cards[cardsRandomNumber] != null) {
+      cardsRandomNumber = generateRandomNumberCards()
     }
-    // console.log(cardsRandomNumber)
-    return cardsRandomNumber
+    break
   }
-  function generateImageRandomNumber() {
-    let randomnumber = Math.floor(Math.random() * imagesArray.length)
-    while (true) {
-      let checkImage = cards.includes(imagesArray[randomnumber])
-      if (checkImage === true) {
-        generateImageRandomNumber()
-      }
-      break
+  return cardsRandomNumber
+}
+function generateImageRandomNumber() {
+  let randomNumber = Math.floor(Math.random() * imagesArray.length)
+  while (true) {
+    let checkImage = cards.some(ele => ele !== null && ele.nameOfImage === imagesArray[randomNumber] )
+    if (checkImage) {
+      randomNumber = generateImageRandomNumber()
     }
-
-    return randomnumber
+    break
   }
+  return randomNumber
+}
 
-  function checkForWinner() {
-    const checkWinner = cards.every(element => element.found === 1)
-    if (checkWinner === true) {
-      const showMessage = document.getElementById("result-message")
-      showMessage.textContent = "You Win the game"
+function checkForWinner() {
+  const checkWinner = cards.every(element => element.found === 1)
+  if (checkWinner === true) {
+    const showMessage = document.getElementById("result-message")
+    showMessage.textContent = "You Win the game"
 
-      memoryGameAudio.winnerMusic()
-      confetti.start()
-      setTimeout(() => {
-        confetti.remove()
-      }, 3000);
-
-
-      //
-      clearInterval(interval)
-    }
-  }
-  function resetButton() {
-
-    buttons.style.display = 'flex'
-    imageContainer.style.display = 'none'
-    resetBtn.style.display = 'none'
-    document.getElementById("timer").style.display = "none"
-    document.getElementById("result-message").style.display = "none"
+    memoryGameAudio.winnerMusic()
+    confetti.start()
+    setTimeout(() => {
+      confetti.remove()
+    }, 3000);
     clearInterval(interval)
-    document.querySelectorAll('.card-images').forEach((element) => imageContainer.removeChild(element))
-    cards = []
-    firstIndex = null
-    level = ''
   }
+}
+function resetButton() {
 
-  function timer() {
-    currentTime = new Date()
-    difference = Math.abs(startTime - currentTime)
-    totalSeconds = Math.floor(difference / 1000)
-    totalMinutes = Math.floor(totalSeconds / 60)
-    seconds = totalSeconds % 60
-    if (totalSeconds === 0) {
-      clearInterval(interval)
-      document.getElementById("timer").textContent = "TimeOut"
-      document.querySelectorAll(".card-images").forEach((card) => card.removeEventListener('click', cardClick))
-    } else {
-      document.getElementById("timer").textContent = `Time left:${totalMinutes}:${seconds}`
-    }
+  buttons.style.display = 'flex'
+  imageContainer.style.display = 'none'
+  resetBtn.style.display = 'none'
+  document.getElementById("timer").style.display = "none"
+  document.getElementById("result-message").style.display = "none"
+  clearInterval(interval)
+  document.querySelectorAll('.card-images').forEach((element) => imageContainer.removeChild(element))
+  cards = []
+  firstIndex = null
+  level = ''
+}
+
+function timer() {
+  currentTime = new Date()
+  difference = Math.abs(startTime - currentTime)
+  totalSeconds = Math.floor(difference / 1000)
+  totalMinutes = Math.floor(totalSeconds / 60)
+  seconds = totalSeconds % 60
+  if (totalSeconds === 0) {
+    clearInterval(interval)
+    document.getElementById("timer").textContent = "TimeOut"
+    document.querySelectorAll(".card-images").forEach((card) => card.removeEventListener('click', cardClick))
+    memoryGameAudio.timeCompleted()
+    
+  } else {
+    document.getElementById("timer").textContent = `Time left:${totalMinutes}:${seconds}`
   }
+}

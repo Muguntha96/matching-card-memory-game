@@ -26,7 +26,7 @@ console.log(imagesArray)
 
 /*-------------------------------- Variables --------------------------------*/
 
-let firstIndex, cards, level, interval
+let firstIndex, cards, level,click, interval
 let difference, totalMinutes, totalSeconds, startTime, currentTime, seconds
 
 
@@ -56,6 +56,7 @@ function init() {
   firstIndex = null
   cards = []
   level = ''
+  click=0
 }
 
 function difficultyLevelButtonClick(evt) {
@@ -73,7 +74,7 @@ function difficultyLevelButtonClick(evt) {
     divImage.className = 'card-images'
     divImage.id = `card${i}`
     imageContainer.appendChild(divImage)
-    divImage.style.backgroundImage = `url(assets/cardsDeck/red_resized.png)`
+    divImage.style.backgroundImage = `url(assets/cardsDeck/blue-default.png)`
     cards.push(null)
   }
   document.querySelectorAll(".card-images").forEach((card) => card.addEventListener('click', cardClick))
@@ -86,13 +87,20 @@ function difficultyLevelButtonClick(evt) {
 
 
 function cardClick(evt) {
+  if(click===1){
+    return
+  }
+  click=1
+  console.log(evt.target.id + click)
   let idx = parseInt(evt.target.id.replace('card', ''))
   evt.target.style.backgroundImage = `url(assets/cardsDeck/${cards[idx].nameOfImage}.png)`
   if (firstIndex === idx) {
+    click=0
     return
   }
   if (firstIndex === null) {
     firstIndex = idx
+    click=0
 
   } else if (cards[firstIndex].nameOfImage === cards[idx].nameOfImage) {
     cards[firstIndex].found = 1
@@ -100,20 +108,24 @@ function cardClick(evt) {
     document.getElementById(`card${firstIndex}`).removeEventListener('click', cardClick)
     document.getElementById(`card${idx}`).removeEventListener('click', cardClick)
     firstIndex = null
-
-    memoryGameAudio.validSelect()
+    click=0
+   memoryGameAudio.validSelect()
     checkForWinner()
 
   }
   else {
-    memoryGameAudio.invalidSelect()
+  
     setTimeout(() => {
-      evt.target.style.backgroundImage = "url(assets/images/backgroundimage.png)"
-      document.getElementById(`card${firstIndex}`).style.backgroundImage = "url(assets/cardsDeck/backgroundImage.png)"
+    
+      evt.target.style.backgroundImage =`url(assets/cardsDeck/blue-default.png)`
+      document.getElementById(`card${firstIndex}`).style.backgroundImage =`url(assets/cardsDeck/blue-default.png)`
 
       firstIndex = null
-    }, 1000);
+      click=0
+    }, 1000)
+
   }
+  
 }
 function applyImagestocard(levelValue) {
   for (let i = 0; i < levelValue / 2; i++) {
@@ -161,8 +173,8 @@ function checkForWinner() {
     const showMessage = document.getElementById("result-message")
     showMessage.textContent = "You Win the game"
 
-    memoryGameAudio.winnerMusic()
-    confetti.start()
+   memoryGameAudio.winnerMusic()
+   confetti.start()
     setTimeout(() => {
       confetti.remove()
     }, 3000);
@@ -193,7 +205,7 @@ function timer() {
     clearInterval(interval)
     document.getElementById("timer").textContent = "TimeOut"
     document.querySelectorAll(".card-images").forEach((card) => card.removeEventListener('click', cardClick))
-    memoryGameAudio.timeCompleted()
+   memoryGameAudio.timeCompleted()
     
   } else {
     document.getElementById("timer").textContent = `Time left:${totalMinutes}:${seconds}`

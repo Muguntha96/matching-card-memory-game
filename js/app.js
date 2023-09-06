@@ -17,8 +17,12 @@ const difficultylevel = {
 
 }
 
-//console.log(difficultylevel)
-const imageNames = ['image01', 'image02', 'image03', 'image04', 'image05', 'image06', 'image07', 'image08']`
+
+let imagesArray=new Array(30)
+for(let i=0;i<imagesArray.length;i++){
+imagesArray[i]=`image${i+1}`  
+}
+console.log(imagesArray)
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -30,6 +34,7 @@ let difference, totalMinutes, totalSeconds, startTime, currentTime, seconds
 const buttons = document.querySelector("#buttons")
 const imageContainer = document.querySelector("#image-container")
 const resetBtn = document.querySelector("#reset")
+const levelButtons=document.querySelectorAll('.levelbuttons')
 const showTimer = document.querySelector("#timer")
 const startGame = document.querySelector("#game-start")
 
@@ -38,7 +43,7 @@ const startGame = document.querySelector("#game-start")
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-document.querySelectorAll('.levelbuttons').forEach((element) => element.addEventListener('click', difficultyLevelButtonClick))
+levelButtons.forEach((element) => element.addEventListener('click', difficultyLevelButtonClick))
 resetBtn.addEventListener('click', resetButton)
 
 
@@ -74,7 +79,7 @@ function difficultyLevelButtonClick(evt) {
     divImage.className = 'card-images'
     divImage.id = `card${i}`
     imageContainer.appendChild(divImage)
-    divImage.style.backgroundImage = "url(assets/images/backgroundimage.png)"
+    divImage.style.backgroundImage ="url(assets/cardsDeck/default-image.png)"
     cards.push(null)
   }
   document.querySelectorAll(".card-images").forEach((card) => card.addEventListener('click', cardClick))
@@ -111,7 +116,7 @@ function cardClick(evt) {
     memoryGameAudio.invalidSelect()
     setTimeout(() => {
       evt.target.style.backgroundImage = "url(assets/images/backgroundimage.png)"
-      document.getElementById(`card${firstIndex}`).style.backgroundImage = "url(assets/images/backgroundimage.png)"
+      document.getElementById(`card${firstIndex}`).style.backgroundImage ="url(assets/cardsDeck/backgroundImage.png)"
 
       firstIndex = null
     }, 1000);
@@ -140,16 +145,17 @@ function applyImagestocard(levelValue) {
 
 }
 
-function generateRandomNumber() {
-  let randomNumber = Math.floor(Math.random() * difficultylevel[level].numberOfCards)
-  while (true) {
-    if (cards[randomNumber] != null) {
-      randomNumber = generateRandomNumber()
-    }
-    break
+function generateRandomNumberCards(){
+  let cardsRandomNumber=Math.floor(Math.random()*difficultyLevel.medium)
+  while(true){
+    if(cards[cardsRandomNumber]!=null){
+    cardsRandomNumber=generateRandomNumberCards()
+    console.log(cardsRandomNumber)
   }
-  return randomNumber
-
+  break
+}
+console.log(cardsRandomNumber)
+  return cardsRandomNumber
 }
 
 function checkForWinner() {

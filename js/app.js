@@ -73,7 +73,7 @@ function difficultyLevelButtonClick(evt) {
     divImage.className = 'card-images'
     divImage.id = `card${i}`
     imageContainer.appendChild(divImage)
-    divImage.style.backgroundImage = `url(assets/cardsDeck/red_joker - instasize.png)`
+    divImage.style.backgroundImage = `url(assets/cardsDeck/red_resized.png)`
     cards.push(null)
   }
   document.querySelectorAll(".card-images").forEach((card) => card.addEventListener('click', cardClick))

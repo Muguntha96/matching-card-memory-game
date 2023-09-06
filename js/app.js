@@ -157,6 +157,18 @@ function generateRandomNumberCards(){
 console.log(cardsRandomNumber)
   return cardsRandomNumber
 }
+function generateImageRandomNumber(){
+  let randomnumber=Math.floor(Math.random()*imagesArray.length)
+while(true){
+  let checkImage=cards.includes(imagesArray[randomnumber])
+  if(checkImage === true){
+    generateImageRandomNumber()
+  }
+  break
+}
+  
+  return randomnumber
+ }
 
 function checkForWinner() {
   const checkWinner = cards.every(element => element.found === 1)

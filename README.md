@@ -4,7 +4,7 @@
   Matching card memory game is a web-based gaming application.It helps improve user concentration while they try to pair the cards.
 
 ## Installation :
-    please click the link [Matching Card Memory Game](https://matching-card-memory-games.netlify.app/)
+    [Matching Card Memory Game](https://matching-card-memory-games.netlify.app/)
 
 ## Technologies :
     1.HTML

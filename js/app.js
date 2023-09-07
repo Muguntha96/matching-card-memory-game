@@ -26,7 +26,7 @@ console.log(imagesArray)
 
 /*-------------------------------- Variables --------------------------------*/
 
-let firstIndex, cards, level,click, interval
+let firstIndex, cards, level,click, interval,count
 let difference, totalMinutes, totalSeconds, startTime, currentTime, seconds
 
 
@@ -57,14 +57,18 @@ function init() {
   cards = []
   level = ''
   click=0
+  count=0
 }
 
 function difficultyLevelButtonClick(evt) {
   level = evt.target.id
-  startTime = new Date()
+    startTime = new Date()
   startTime.setMinutes(startTime.getMinutes() + difficultylevel[level].gameTime)
   buttons.style.display = 'none'
   document.getElementById("timer").style.display = "flex"
+  document.getElementById("matches").style.display = "flex"
+  document.getElementById("matches").textContent="Matches : "
+ 
   resetBtn.style.display = 'flex'
   timer()
   interval = setInterval(timer, 1000)
@@ -74,7 +78,7 @@ function difficultyLevelButtonClick(evt) {
     divImage.className = 'card-images'
     divImage.id = `card${i}`
     imageContainer.appendChild(divImage)
-    divImage.style.backgroundImage = `url(assets/cardsDeck/blue-default.png)`
+    divImage.style.backgroundImage =`url(assets/cardsDeck/redImage.png)`
     cards.push(null)
   }
   document.querySelectorAll(".card-images").forEach((card) => card.addEventListener('click', cardClick))
@@ -105,6 +109,10 @@ function cardClick(evt) {
   } else if (cards[firstIndex].nameOfImage === cards[idx].nameOfImage) {
     cards[firstIndex].found = 1
     cards[idx].found = 1
+    count+=1
+   
+    document.getElementById("matches").textContent=`Matches : ${count}`
+
     document.getElementById(`card${firstIndex}`).removeEventListener('click', cardClick)
     document.getElementById(`card${idx}`).removeEventListener('click', cardClick)
     firstIndex = null
@@ -117,9 +125,9 @@ function cardClick(evt) {
   
     setTimeout(() => {
     
-      evt.target.style.backgroundImage =`url(assets/cardsDeck/blue-default.png)`
+      evt.target.style.backgroundImage =`url(assets/cardsDeck/redImage.png)`
     
-      document.getElementById(`card${firstIndex}`).style.backgroundImage =`url(assets/cardsDeck/blue-default.png)`
+      document.getElementById(`card${firstIndex}`).style.backgroundImage =`url(assets/cardsDeck/redImage.png)`
 
       firstIndex = null
       click=0
@@ -128,6 +136,7 @@ function cardClick(evt) {
   }
   
 }
+
 function applyImagestocard(levelValue) {
   for (let i = 0; i < levelValue / 2; i++) {
     let imageRandom = generateImageRandomNumber()
@@ -209,6 +218,6 @@ function timer() {
   //  memoryGameAudio.timeCompleted()
     
   } else {
-    document.getElementById("timer").textContent = `Time left:${totalMinutes}:${seconds}`
+    document.getElementById("timer").textContent = `Time Left : ${totalMinutes}:${seconds}`
   }
 }

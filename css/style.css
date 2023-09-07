@@ -1,63 +1,65 @@
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 3px;
-  background-color:gray;
-  color:white;
-}
-
-#timer {
-  display: none;
+body{
+ background-color: #365E03FF;
 
 
 }
-
-.buttons {
-  display: flex;
-  align-items: center;
+h1{
+display: flex;
+justify-content: center;
+margin:10px;
+color:gold;
+font-family: 'Playfair Display SC', serif;
+}
+h2{
+  font-family: 'Playfair Display SC', serif;
+  color:gold
+}
+#buttons{
+  font-family: 'Playfair Display SC', serif;
+  display:flex;
   justify-content: center;
-  height: 60px;
-  width: 300px;
-}
-
-
-#easy {
-  margin: 4px;
-  border: 3px solid green;
-  background-color: green;
-  color: white;
-  font-size: 22px;
+ 
 
 }
-
-#medium {
-  margin: 4px;
-  border: 3px solid #845EC2;
-  background-color: #845EC2;
-  color: white;
-  font-size: 22px;
-
+.levelbuttons{
+  width:100px;
+  height:30px;
+  margin:4px;
+  padding:2px;
+  color:gold;
+  font-size: larger;
+}
+#easy{
+  background-color: #311b93;
+  
+}
+#medium{
+  background-color: #931b1b;
+}
+#hard{
+  background-color: #140f07;
 }
 
-#hard {
-  margin: 4px;
-  border: 3px solid #C34A36;
-  background-color: #C34A36;
-  color: white;
-  font-size: 22px;
-}
-
-#image-container {
+#image-container{
   display: none;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 20px 20px;
-  width: 1000px;
-  background-color: #845EC2;
+  justify-content:center;
+  align-items: center;
+  gap: 10px 10px;
+  width:75%;
+  height: 70%;
+
+  
+  margin-left:11%;
+  padding: 2px;
+
 }
 
+
 .card-images {
+  display:flex;
+  align-items: center;
+  justify-content: center;
   height: 300px;
   width: 200px;
   margin: 4px 6px 12px;
@@ -66,7 +68,6 @@ body {
   border-radius: 30px;
 
 }
-
 #reset {
   display: none;
   background-color: #0E0054;
@@ -77,24 +78,11 @@ body {
   border: 2px solid #0E0054;
   align-items: center;
   justify-content: center;
+  margin-left:45%;
+  padding: 2px;
 }
-@media screen and (max-device-width:800px), screen and (max-width:800px) {
-  #image-container {
-    display:flex;
-    width:600px;
-    flex-wrap: wrap;
 
-  }
-  .card-images.large {
-    height:100px;
-    width: 80px;
-    padding: 4px;
-    border: 2px solid black;
-  
-    
-  
-  }
-  body{
-    color:red;
-  }
-}
+
+
+
+/* font-family: 'Playfair Display SC', serif; */

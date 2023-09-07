@@ -1,21 +1,19 @@
 body{
  background-color: #365E03FF;
-
+font-family:'Playfair Display SC', serif;
+color:gold;
 
 }
 h1{
 display: flex;
 justify-content: center;
 margin:10px;
-color:gold;
-font-family: 'Playfair Display SC', serif;
+
 }
-h2{
-  font-family: 'Playfair Display SC', serif;
-  color:gold
-}
+
+
 #buttons{
-  font-family: 'Playfair Display SC', serif;
+  
   display:flex;
   justify-content: center;
  
@@ -30,15 +28,31 @@ h2{
   font-size: larger;
 }
 #easy{
+    font-family: 'Playfair Display SC', serif;
   background-color: #311b93;
+  align-items: center;
   
 }
 #medium{
+  font-family: 'Playfair Display SC', serif;
   background-color: #931b1b;
+  align-items: center;
+  width: 120px;
 }
+
 #hard{
+  font-family: 'Playfair Display SC', serif;
   background-color: #140f07;
 }
+h2{
+  margin: 0;
+
+}
+#display{
+  display:flex;
+  justify-content: space-evenly;
+}
+
 
 #image-container{
   display: none;
@@ -71,15 +85,16 @@ h2{
 #reset {
   display: none;
   background-color: #0E0054;
-  color: white;
+  color:gold;
   font-size: 22px;
-  width: 100px;
+  width: 120px;
   height: 30px;
   border: 2px solid #0E0054;
   align-items: center;
   justify-content: center;
   margin-left:45%;
   padding: 2px;
+  font-family: 'Playfair Display SC', serif;
 }
 
 

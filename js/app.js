@@ -26,7 +26,7 @@ console.log(imagesArray)
 
 /*-------------------------------- Variables --------------------------------*/
 
-let firstIndex, cards, level,click, interval,count
+let firstIndex, cards, level,click, interval,count,attempt
 let difference, totalMinutes, totalSeconds, startTime, currentTime, seconds
 
 
@@ -58,6 +58,7 @@ function init() {
   level = ''
   click=0
   count=0
+  attempt=0
 }
 
 function difficultyLevelButtonClick(evt) {
@@ -65,10 +66,11 @@ function difficultyLevelButtonClick(evt) {
     startTime = new Date()
   startTime.setMinutes(startTime.getMinutes() + difficultylevel[level].gameTime)
   buttons.style.display = 'none'
-  document.getElementById("timer").style.display = "flex"
-  document.getElementById("matches").style.display = "flex"
-  document.getElementById("matches").textContent="Matches : "
- 
+  // document.getElementById("timer").style.display = "flex"
+  // document.getElementById("matches").style.display = "flex"
+  document.getElementById("display").style.display="flex"
+  document.getElementById("matches").textContent=`Matches : ${count}`
+  document.getElementById("turns").textContent=`Attempt : ${attempt}`
   resetBtn.style.display = 'flex'
   timer()
   interval = setInterval(timer, 1000)
@@ -110,7 +112,8 @@ function cardClick(evt) {
     cards[firstIndex].found = 1
     cards[idx].found = 1
     count+=1
-   
+   attempt++
+   document.getElementById("turns").textContent=`Attempt : ${attempt}`
     document.getElementById("matches").textContent=`Matches : ${count}`
 
     document.getElementById(`card${firstIndex}`).removeEventListener('click', cardClick)
@@ -132,8 +135,10 @@ function cardClick(evt) {
       firstIndex = null
       click=0
     }, 1000)
-
+attempt++
+document.getElementById("turns").textContent=`Attempt : ${attempt}`
   }
+
   
 }
 
@@ -187,7 +192,7 @@ function checkForWinner() {
    confetti.start()
     setTimeout(() => {
       confetti.remove()
-    }, 3000);
+    }, 2000);
     clearInterval(interval)
   }
 }
@@ -196,13 +201,16 @@ function resetButton() {
   buttons.style.display = 'flex'
   imageContainer.style.display = 'none'
   resetBtn.style.display = 'none'
-  document.getElementById("timer").style.display = "none"
+  document.getElementById("display").style.display="none"
   document.getElementById("result-message").style.display = "none"
   clearInterval(interval)
   document.querySelectorAll('.card-images').forEach((element) => imageContainer.removeChild(element))
+  
   cards = []
   firstIndex = null
   level = ''
+  count=0
+  attempt=0
 }
 
 function timer() {

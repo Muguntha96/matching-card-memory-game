@@ -118,6 +118,7 @@ function cardClick(evt) {
     setTimeout(() => {
     
       evt.target.style.backgroundImage =`url(assets/cardsDeck/blue-default.png)`
+    
       document.getElementById(`card${firstIndex}`).style.backgroundImage =`url(assets/cardsDeck/blue-default.png)`
 
       firstIndex = null
@@ -205,7 +206,7 @@ function timer() {
     clearInterval(interval)
     document.getElementById("timer").textContent = "TimeOut"
     document.querySelectorAll(".card-images").forEach((card) => card.removeEventListener('click', cardClick))
-   memoryGameAudio.timeCompleted()
+  //  memoryGameAudio.timeCompleted()
     
   } else {
     document.getElementById("timer").textContent = `Time left:${totalMinutes}:${seconds}`

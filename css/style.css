@@ -3,7 +3,8 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 3px;
-  background-color: #241468;
+  background-color:gray;
+  color:white;
 }
 
 #timer {
@@ -53,6 +54,7 @@ body {
   justify-content: space-evenly;
   gap: 20px 20px;
   width: 1000px;
+  background-color: #845EC2;
 }
 
 .card-images {
@@ -76,23 +78,23 @@ body {
   align-items: center;
   justify-content: center;
 }
-@media screen and (max-device-width:640px), screen and (max-width:640px) {
+@media screen and (max-device-width:800px), screen and (max-width:800px) {
   #image-container {
     display:flex;
-    width:auto;
+    width:600px;
     flex-wrap: wrap;
-    gap:2px 2px
-   
+
   }
-  .card-images {
-    height: auto;
-    width: auto;
-    margin: 4px 6px 12px;
+  .card-images.large {
+    height:100px;
+    width: 80px;
     padding: 4px;
-    border: 2px solid gray;
-    border-radius: 30px;
-    ;
+    border: 2px solid black;
+  
+    
   
   }
-  
+  body{
+    color:red;
+  }
 }

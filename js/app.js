@@ -3,11 +3,11 @@ import * as memoryGameAudio from './audio.js'
 
 const difficultylevel = {
   easy: {
-    numberOfCards: 12,
+    numberOfCards: 8 ,
     gameTime: 1
   },
   medium: {
-    numberOfCards: 20,
+    numberOfCards: 16,
     gameTime: 2
   },
   hard: {

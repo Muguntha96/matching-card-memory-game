@@ -1,4 +1,4 @@
-![screenshot](assets/background-Images/project-screenshot.png)
+![screenshot](assets/background-Images/screenshot.png)
 # Casino Cards Memory
 ## Project Description :
 Casino Cards Memory game is a web-based gaming application.It is a simple, enjoyable game which helps users to improve their mental focus and memory.

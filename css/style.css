@@ -41,6 +41,7 @@ h1 {
 #hard {
   font-family: 'Playfair Display SC', serif;
   background-color: #140f07;
+
 }
 
 h2 {
@@ -54,8 +55,12 @@ h2 {
 
 #result-message {
   display: none;
-  justify-content: center;
+  justify-content: space-evenly;
   font-size: xx-large;
+  border:2px #0E0054;
+  background-color: #0E0054;
+  width:40%;
+  margin-left:30% ;
 }
 
 #image-container {

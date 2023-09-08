@@ -22,24 +22,18 @@ for (let i = 0; i < imagesArray.length; i++) {
 }
 /*-------------------------------- Variables --------------------------------*/
 
-let firstIndex, cards, level, click, interval, count, attempt
-let difference, totalMinutes, totalSeconds, startTime, currentTime, seconds
-
-
+let firstIndex, cards, level, click, interval, count, attempt, startTime
 /*------------------------ Cached Element References ------------------------*/
 const buttons = document.querySelector("#buttons")
 const imageContainer = document.querySelector("#image-container")
 const resetBtn = document.querySelector("#reset")
-const levelButtons = document.querySelectorAll('.levelbuttons')
-const showTimer = document.querySelector("#timer")
-const startGame = document.querySelector("#game-start")
 const showMessage = document.getElementById("result-message")
 
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-levelButtons.forEach((element) => element.addEventListener('click', difficultyLevelButtonClick))
+document.querySelectorAll('.levelbuttons').forEach((element) => element.addEventListener('click', difficultyLevelButtonClick))
 resetBtn.addEventListener('click', resetButton)
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -51,7 +45,6 @@ function init() {
   count = 0
   attempt = 0
 }
-
 function difficultyLevelButtonClick(evt) {
   level = evt.target.id
   startTime = new Date()
@@ -78,9 +71,6 @@ function difficultyLevelButtonClick(evt) {
 
   applyImagestocard(difficultylevel[level].numberOfCards)
 }
-
-
-
 function cardClick(evt) {
   if (click === 1) {
     return
@@ -120,10 +110,7 @@ function cardClick(evt) {
     attempt++
     document.getElementById("turns").textContent = `Attempt : ${attempt}`
   }
-
-
 }
-
 function applyImagestocard(levelValue) {
   for (let i = 0; i < levelValue / 2; i++) {
     let imageRandom = generateImageRandomNumber()
@@ -141,7 +128,6 @@ function applyImagestocard(levelValue) {
   }
 
 }
-
 function generateRandomNumberCards() {
   let cardsRandomNumber = Math.floor(Math.random() * difficultylevel[level].numberOfCards)
   while (true) {
@@ -163,11 +149,10 @@ function generateImageRandomNumber() {
   }
   return randomNumber
 }
-
 function checkForWinner() {
   const checkWinner = cards.every(element => element.found === 1)
   if (checkWinner === true) {
-    showMessage.style.display ="flex"    
+    showMessage.style.display = "flex"
     showMessage.textContent = "🏆🏆🏆You Won the game🏆🏆🏆"
     memoryGameAudio.winnerMusic()
     confetti.start()
@@ -176,10 +161,8 @@ function checkForWinner() {
     }, 3000);
     clearInterval(interval)
   }
-  else{
-    
-    
-      }
+  else {
+  }
 }
 function resetButton() {
   buttons.style.display = 'flex'
@@ -195,16 +178,16 @@ function resetButton() {
 }
 
 function timer() {
-  currentTime = new Date()
-  difference = Math.abs(startTime - currentTime)
-  totalSeconds = Math.floor(difference / 1000)
-  totalMinutes = Math.floor(totalSeconds / 60)
-  seconds = totalSeconds % 60
+  let currentTime = new Date()
+  let difference = Math.abs(startTime - currentTime)
+  let totalSeconds = Math.floor(difference / 1000)
+  let totalMinutes = Math.floor(totalSeconds / 60)
+  let seconds = totalSeconds % 60
   if (totalSeconds === 0) {
     clearInterval(interval)
-        document.getElementById("timer").textContent = `Time Left : 0:0`
-        showMessage.style.display="flex"
-        showMessage.textContent = "😔😔😔Time Out You Loss😔😔😔"
+    document.getElementById("timer").textContent = `Time Left : 0:0`
+    showMessage.style.display = "flex"
+    showMessage.textContent = "😔😔😔Time Out You Loss😔😔😔"
     document.querySelectorAll(".card-images").forEach((card) => card.removeEventListener('click', cardClick))
     memoryGameAudio.timeCompleted()
   } else {

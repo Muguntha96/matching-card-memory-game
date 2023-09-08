@@ -108,6 +108,7 @@ function cardClick(evt) {
     click = 0
     memoryGameAudio.validSelect()
     checkForWinner()
+    return
   }
   else {
     setTimeout(() => {

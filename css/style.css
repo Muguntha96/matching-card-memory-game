@@ -89,7 +89,6 @@ h2 {
   font-size: 22px;
   width: 120px;
   height: 30px;
-  border: 2px solid #0E0054;
   align-items: center;
   justify-content: center;
   margin-left: 45%;
@@ -100,7 +99,7 @@ h2 {
 @media screen and (max-device-width:800px),
 screen and (max-width:800px) {
   body {
-    background-color: black;
+    background-color: gray;
     font-size: 10px;
     justify-content: center;
   }
@@ -110,7 +109,19 @@ screen and (max-width:800px) {
     justify-content: center;
     margin-top: 10%;
   }
-
+  #easy{
+    background-color:green;
+    color:white;
+  }
+  #medium{
+    background-color:purple;
+    color:white;
+  }
+  #hard{
+    background-color:maroon;
+    color:white;
+  }
+  
   #image-container {
     max-height: 2400px;
     height: 100%;
@@ -126,9 +137,9 @@ screen and (max-width:800px) {
     max-width: 70px;
   }
   #reset {
-    display: flex;
+    display: none;
     justify-content: space-evenly;
-    background-color:red;
-    color:black;
+    background-color:brown;
+    color:white
   }
 }

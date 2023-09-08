@@ -151,7 +151,7 @@ function generateImageRandomNumber() {
 }
 function checkForWinner() {
   const checkWinner = cards.every(element => element.found === 1)
-  if (checkWinner === true) {
+  if (checkWinner) {
     showMessage.style.display = "flex"
     showMessage.textContent = "🏆🏆🏆You Won the game🏆🏆🏆"
     memoryGameAudio.winnerMusic()

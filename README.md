@@ -35,5 +35,5 @@ Casino Cards Memory is a web-based gaming application. It is a simple and enjoya
 - To start a new game, simply click the reset button. Don't forget to select a new difficulty level.
 
 ## Next Steps:
-- Add the scores as well as the number of mismatches.
+- Add the scores values 
 - Add some CSS styling in the game

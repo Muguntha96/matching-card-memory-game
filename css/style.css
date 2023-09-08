@@ -1,77 +1,77 @@
-body{
- background-color: #365E03FF;
-font-family:'Playfair Display SC', serif;
-color:gold;
-
-}
-h1{
-display: flex;
-justify-content: center;
-margin:10px;
-
+body {
+  background-color: #365E03FF;
+  font-family: 'Playfair Display SC', serif;
+  color: gold;
 }
 
-
-#buttons{
-  
-  display:flex;
+h1 {
+  display: flex;
   justify-content: center;
- 
-
+  margin-top: 20%;
 }
-.levelbuttons{
-  width:100px;
-  height:30px;
-  margin:4px;
-  padding:2px;
-  color:gold;
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  margin: 2px;
+}
+
+.levelbuttons {
+  width: 100px;
+  height: 30px;
+  margin: 4px;
+  padding: 2px;
+  color: gold;
   font-size: larger;
 }
-#easy{
-    font-family: 'Playfair Display SC', serif;
+
+#easy {
+  font-family: 'Playfair Display SC', serif;
   background-color: #311b93;
   align-items: center;
-  
 }
-#medium{
+
+#medium {
   font-family: 'Playfair Display SC', serif;
   background-color: #931b1b;
   align-items: center;
   width: 120px;
 }
 
-#hard{
+#hard {
   font-family: 'Playfair Display SC', serif;
   background-color: #140f07;
 }
-h2{
-  margin: 0;
 
+h2 {
+  margin: 0;
 }
-#display{
-  display:flex;
+
+#display {
+  display: flex;
   justify-content: space-evenly;
 }
 
-
-#image-container{
+#result-message {
   display: none;
-  flex-wrap: wrap;
-  justify-content:center;
-  align-items: center;
-  gap: 10px 10px;
-  width:75%;
-  height: 70%;
-
-  
-  margin-left:11%;
-  padding: 2px;
-
+  justify-content: center;
+  font-size: xx-large;
 }
 
+#image-container {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 10px;
+  width: 75%;
+  height: 70%;
+  margin-left: 11%;
+  padding: 2px;
+}
 
 .card-images {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   height: 300px;
@@ -80,24 +80,55 @@ h2{
   padding: 4px;
   border: 2px solid gray;
   border-radius: 30px;
-
 }
+
 #reset {
   display: none;
   background-color: #0E0054;
-  color:gold;
+  color: gold;
   font-size: 22px;
   width: 120px;
   height: 30px;
   border: 2px solid #0E0054;
   align-items: center;
   justify-content: center;
-  margin-left:45%;
+  margin-left: 45%;
   padding: 2px;
   font-family: 'Playfair Display SC', serif;
 }
 
+@media screen and (max-device-width:800px),
+screen and (max-width:800px) {
+  body {
+    background-color: black;
+    font-size: 10px;
+    justify-content: center;
+  }
 
+  h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+  }
 
+  #image-container {
+    max-height: 2400px;
+    height: 100%;
+     justify-content: center;
+  }
 
-/* font-family: 'Playfair Display SC', serif; */
+  .card-images {
+    display: flex;
+    flex-direction: row;
+    flex: wrap;
+    max-height: 100px;
+    height: 80px;
+    max-width: 70px;
+  }
+  #reset {
+    display: flex;
+    justify-content: space-evenly;
+    background-color:red;
+    color:black;
+  }
+}

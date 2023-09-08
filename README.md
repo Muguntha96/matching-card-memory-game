@@ -1,7 +1,7 @@
 ![screenshot](assets/background-Images/screenshot.png)
 # Casino Cards Memory
 ## Project Description :
-Casino Cards Memory game is a web-based gaming application.It is a simple, enjoyable game which helps users to improve their mental focus and memory.
+Casino Cards Memory is a web-based gaming application. It is a simple and enjoyable game that helps users improve their mental focus and memory.
 ## Project Planning Material : https://docs.google.com/document/d/1G3ZdeN6ta1ZE4QIWSNcSnt0aTk88ihRb161eAQq98ho/edit
 ## Installation : [Casino Cards Memory](https://matching-card-memory-games.netlify.app)
 
@@ -22,16 +22,17 @@ Casino Cards Memory game is a web-based gaming application.It is a simple, enjoy
   - VS Code
 
 ## Usage :
-- Click the link in the installation field
-- Casino Cards Memory Game will launch in your browser
-- Click the buttons to select the level "Easy," "Medium," or "Hard."
-- The cards will be displayed in a shuffled order based on the level, and the timer will be displayed and begin.
-- The user can randomly click on the two cards to flip them.
-     - If they match, they will be face up.
-     - If they do not match, they will be turned face down.
-- The user will try to match all of the pairs within the time limit.
-- If the timer runs out, the game will come to an end.
-- The user needs to click the reset button to restart the game from the beginning. And, once again, the user needs to select a level.
+- Just click on the provided hyperlink in the installation field.
+- Your web browser will open the Casino Cards Memory Game.
+- To choose the desired difficulty level, click on the buttons labeled "Easy," "Medium," or "Hard."
+- The cards will be displayed in a random order based on the level you selected, and the timer will start.
+- Additionally, you will find the "Matches" and "Attempts" fields with an initial value of 0.
+- You can flip any two cards by clicking on them.
+    - If the cards match, they will be turned face-up, and the "Matches" and "Attempts" values will increase.
+    - If they don't match, the cards will be turned face down again, and the "Attempts" value will increase.
+- The goal is to match all the pairs within the specified time limit.
+- If the timer runs out, the game will end.
+- To start a new game, simply click the reset button. Don't forget to select a new difficulty level.
 
 ## Next Steps:
 - Add the scores as well as the number of mismatches.

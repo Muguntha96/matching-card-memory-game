@@ -57,10 +57,10 @@ h2 {
   display: none;
   justify-content: space-evenly;
   font-size: xx-large;
-  border:2px #0E0054;
+  border: 2px #0E0054;
   background-color: #0E0054;
-  width:40%;
-  margin-left:30% ;
+  width: 40%;
+  margin-left: 30%;
 }
 
 #image-container {
@@ -69,10 +69,11 @@ h2 {
   justify-content: center;
   align-items: center;
   gap: 10px 10px;
-  width: 75%;
-  height: 70%;
-  margin-left: 11%;
+  width: 1000px;
+  height: 100%;
+  margin-left:20%;
   padding: 2px;
+  margin-right:300px;
 }
 
 .card-images {
@@ -101,8 +102,8 @@ h2 {
   font-family: 'Playfair Display SC', serif;
 }
 
-@media screen and (max-device-width:800px),
-screen and (max-width:800px) {
+@media screen and (max-device-width:1200px),
+screen and (max-width:800px){
   body {
     background-color: gray;
     font-size: 10px;
@@ -114,37 +115,43 @@ screen and (max-width:800px) {
     justify-content: center;
     margin-top: 10%;
   }
-  #easy{
-    background-color:green;
-    color:white;
+
+  #easy {
+    background-color: green;
+    color: white;
   }
-  #medium{
-    background-color:purple;
-    color:white;
+
+  #medium {
+    background-color: purple;
+    color: white;
   }
-  #hard{
-    background-color:maroon;
-    color:white;
+
+  #hard {
+    background-color: maroon;
+    color: white;
   }
-  
+
   #image-container {
-    max-height: 2400px;
+    display: none;
+    flex-wrap: wrap;
     height: 100%;
-     justify-content: center;
+    max-width: 600px;
+    justify-content: center;
+    margin-left:100px;
   }
 
   .card-images {
     display: flex;
     flex-direction: row;
     flex: wrap;
-    max-height: 100px;
     height: 80px;
-    max-width: 70px;
+    width: 100px;
+
   }
   #reset {
     display: none;
     justify-content: space-evenly;
-    background-color:brown;
-    color:white
+    background-color: brown;
+    color: white
   }
 }
